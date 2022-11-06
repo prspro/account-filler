@@ -1,0 +1,31 @@
+@import "./styles/container.sass"
+@import "./styles/svg-icons.sass"
+
+.app
+    display: flex
+    flex-direction: column
+    min-height: 100vh
+    & main
+        flex: 1
+
+header, footer
+    padding: 20px 0
+    background-color: #ebebeb
+
+.generate-btn
+    margin: 0
+    padding: 0
+    background: none
+    border: none
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    &__icon
+        height: 150px
+        width: 150px
+        margin-bottom: 10px
+    &__text
+        font-size: 26px
+        font-weight: 700
+        margin: 0

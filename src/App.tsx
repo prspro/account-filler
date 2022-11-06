@@ -1,10 +1,13 @@
-import React from 'react';
-import './App.css';
+import FieldList from "./components/FieldList/FieldList";
 
 function App() {
   return (
     <div className="app">
-      <p>account filler</p>
+      <header>header</header>
+      <main className="container relative">
+        <FieldList />
+      </main>
+      <footer>footer</footer>
     </div>
   );
 }
