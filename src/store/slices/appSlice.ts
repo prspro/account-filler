@@ -26,5 +26,5 @@ const overlaySlice = createSlice({
   },
 });
 
-export const { showOverlay, hideOverlay, toggleOverlay } = overlaySlice.actions;
+export const { showOverlay, hideOverlay, toggleOverlay, toggleIsDataGenerated } = overlaySlice.actions;
 export default overlaySlice.reducer;

@@ -1,10 +1,13 @@
+import { faker } from "@faker-js/faker";
 // const chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   const chars =
   "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const passwordLength = 32;
 
+
 interface IUseDataFill {
   generatePassword: () => string;
+  generateLogin: () => string;
 }
 
 function useDataFill(): IUseDataFill {
@@ -17,8 +20,15 @@ function useDataFill(): IUseDataFill {
     return password;
   };
 
+  const generateLogin = (): string => {
+    return faker.word.adjective()+faker.word.noun();
+  }
+
+  // console.log(faker.name.fullName());
+
   return {
     generatePassword,
+    generateLogin,
   };
 }
 

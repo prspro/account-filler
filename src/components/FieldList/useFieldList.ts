@@ -1,21 +1,15 @@
-import { useState } from "react";
 import useDataFill from "../../hooks/useDataFill";
 
 interface IUseFieldList {
-  isDataGenerated: boolean;
-  toggleFieldList: () => void;
   generatePassword: () => string;
+  generateLogin: () => string;
 }
 
 function useFieldList(): IUseFieldList {
-  const [isDataGenerated, setIsDataGenerated] = useState<boolean>(false);
-  const { generatePassword } = useDataFill();
+  const { generatePassword, generateLogin } = useDataFill();
 
-  const toggleFieldList = () => {
-    setIsDataGenerated((prev) => !prev);
-  };
 
-  return { isDataGenerated, toggleFieldList, generatePassword };
+  return { generatePassword, generateLogin };
 }
 
 export default useFieldList;
