@@ -19,7 +19,7 @@ function App() {
             </div>
           </section>
         ) : (
-          <StartButton>Generate me!</StartButton>
+          <StartButton placeholder={"Generate me!"} />
         )}
       </main>
       <footer>footer</footer>

@@ -1,11 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+interface IAppSlice {
+  isDataGenerated: boolean;
+  isOverlayShown: boolean;
+}
+
+const initialState: IAppSlice = {
   isDataGenerated: false,
   isOverlayShown: false,
 };
 
-const overlaySlice = createSlice({
+const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
@@ -21,10 +26,15 @@ const overlaySlice = createSlice({
     },
     ///isDataGenerated
     toggleIsDataGenerated: (state, action: PayloadAction<void>) => {
-        state.isDataGenerated = !state.isDataGenerated;
+      state.isDataGenerated = !state.isDataGenerated;
     },
   },
 });
 
-export const { showOverlay, hideOverlay, toggleOverlay, toggleIsDataGenerated } = overlaySlice.actions;
-export default overlaySlice.reducer;
+export const {
+  showOverlay,
+  hideOverlay,
+  toggleOverlay,
+  toggleIsDataGenerated,
+} = appSlice.actions;
+export default appSlice.reducer;

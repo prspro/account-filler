@@ -1,29 +1,54 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
-  isDataGenerated: false,
-  isOverlayShown: false,
+interface IDataSlice {
+  login: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  dateOfBirth: string;
+}
+
+const initialState: IDataSlice = {
+  login: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  dateOfBirth: "",
 };
 
-const overlaySlice = createSlice({
-  name: "app",
+const dataSlice = createSlice({
+  name: "data",
   initialState,
   reducers: {
-    showOverlay: (state, action: PayloadAction<void>) => {
-      state.isOverlayShown = true;
+    refreshLogin: (state, action: PayloadAction<string>) => {
+      state.login = action.payload;
     },
-    hideOverlay: (state, action: PayloadAction<void>) => {
-      state.isOverlayShown = false;
+    refreshPassword: (state, action: PayloadAction<string>) => {
+      state.password = action.payload;
     },
-    toggleOverlay: (state, action: PayloadAction<void>) => {
-      state.isOverlayShown = !state.isOverlayShown;
+    refreshFirstName: (state, action: PayloadAction<string>) => {
+      state.firstName = action.payload;
     },
-    ///
-    toggleIsDataGenerated: (state, action: PayloadAction<void>) => {
-        state.isDataGenerated = !state.isDataGenerated;
+    refreshLastName: (state, action: PayloadAction<string>) => {
+      state.lastName = action.payload;
+    },
+    refreshEmail: (state, action: PayloadAction<string>) => {
+      state.email = action.payload;
+    },
+    refreshDateOfBirth: (state, action: PayloadAction<string>) => {
+      state.dateOfBirth = action.payload;
     },
   },
 });
 
-export const { showOverlay, hideOverlay, toggleOverlay } = overlaySlice.actions;
-export default overlaySlice.reducer;
+export const {
+  refreshLogin,
+  refreshPassword,
+  refreshFirstName,
+  refreshLastName,
+  refreshEmail,
+  refreshDateOfBirth,
+} = dataSlice.actions;
+export default dataSlice.reducer;

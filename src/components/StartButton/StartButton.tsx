@@ -4,16 +4,16 @@ import "./startButton.sass";
 import React from "react";
 
 interface IStartButtonArg {
-  children: React.ReactNode;
+  placeholder: string;
 }
 
-const StartButton = ({ children }: IStartButtonArg) => {
-  const { toggleDataGenerated } = useStartButton();
+const StartButton = ({ placeholder }: IStartButtonArg) => {
+  const { handleStart } = useStartButton();
 
   return (
-    <button className="start-btn" onClick={toggleDataGenerated}>
+    <button className="start-btn" onClick={handleStart}>
       <RefreshIcon className="start-btn__icon svg-icon refresh" />
-      <p className="start-btn__text">{children}</p>
+      <p className="start-btn__text">{placeholder}</p>
     </button>
   );
 };
