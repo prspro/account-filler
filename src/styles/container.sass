@@ -1,6 +1,22 @@
+@import "./_breackpoints.sass"
+
 .container
     width: 1200px
+    // width: 100%
     margin: 0 auto
     padding: 0 15px
+    box-sizing: border-box
     &.relative
         position: relative
+
+@media screen and (max-width: $container_lg)
+    .container
+        width: 992px
+
+@media screen and (max-width: $container_md)
+    .container
+        width: 768px
+
+@media screen and (max-width: $container_sm)
+    .container
+        width: 100%
