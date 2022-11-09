@@ -1,14 +1,6 @@
 import { useDispatch } from "react-redux";
 import { toggleIsDataGenerated } from "../../store/slices/appSlice";
-import {
-  refreshDateOfBirth,
-  refreshEmail,
-  refreshFirstName,
-  refreshLastName,
-  refreshLogin,
-  refreshPassword,
-} from "../../store/slices/dataSlice";
-
+import { addFieldItem } from "../../store/slices/dataSlice";
 import useDataFill from "../../hooks/useDataFill";
 
 interface IUseStartButton {
@@ -16,20 +8,17 @@ interface IUseStartButton {
 }
 
 const useStartButton = (): IUseStartButton => {
-  const { password, login, firstName, lastName, email, dateOfBirth } =
-    useDataFill();
+  const { dataFillList } = useDataFill();
 
   const dispatch = useDispatch();
 
   const handleStart = () => {
     dispatch(toggleIsDataGenerated());
-    ///
-    dispatch(refreshPassword(password()));
-    dispatch(refreshLogin(login()));
-    dispatch(refreshFirstName(firstName()));
-    dispatch(refreshLastName(lastName()));
-    dispatch(refreshEmail(email()));
-    dispatch(refreshDateOfBirth(dateOfBirth()));
+    dataFillList.forEach((entry) => {
+      dispatch(
+        addFieldItem({ id: entry.id, label: entry.label, value: entry.generationFunction() })
+      );
+    });
   };
 
   return {

@@ -4,12 +4,11 @@ const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const passwordLength = 32;
 
 interface IUseDataFill {
-  login: () => string;
-  password: () => string;
-  firstName: () => string;
-  lastName: () => string;
-  email: () => string;
-  dateOfBirth: () => string;
+  dataFillList: {
+    id: string;
+    label: string;
+    generationFunction: () => string;
+  }[];
 }
 
 function useDataFill(): IUseDataFill {
@@ -43,15 +42,21 @@ function useDataFill(): IUseDataFill {
     return `${dateValue.getDate()} ${dateValue.getMonth()} ${dateValue.getFullYear()}`;
   };
 
-  // console.log(faker.name.fullName());
+  const dataFillList = [
+    { id: "login", label: "Login", generationFunction: login },
+    { id: "password", label: "Password", generationFunction: password },
+    { id: "firstName", label: "First name", generationFunction: firstName },
+    { id: "lastName", label: "Last name", generationFunction: lastName },
+    { id: "email", label: "Email", generationFunction: email },
+    {
+      id: "dateOfBirth",
+      label: "Date of birth",
+      generationFunction: dateOfBirth,
+    },
+  ];
 
   return {
-    password,
-    login,
-    firstName,
-    lastName,
-    email,
-    dateOfBirth,
+    dataFillList,
   };
 }
 

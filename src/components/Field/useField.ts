@@ -1,22 +1,30 @@
-import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../store";
+import { updateFieldItem } from "../../store/slices/dataSlice";
 
-// interface IUseFieldArg {
-//   generationFunction: () => string;
-// }
+interface IUseFieldArg {
+  id: string;
+  refreshFunction: () => string;
+}
 
 interface IUseField {
   fieldValue: string;
-  refreshFieldValue: () => void;
+  handleRefresh: () => void;
 }
 
-const useField = (generationFunction: () => string): IUseField => {
-  const [fieldValue, setFieldValue] = useState(generationFunction());
+const useField = ({ id, refreshFunction }: IUseFieldArg): IUseField => {
+  const fieldValue =
+    useSelector((state: RootState) => state.data.fieldList).find(
+      (entry) => entry.id === id
+    )?.value || "";
+  
+    const dispatch = useDispatch();
 
-  const refreshFieldValue = () => {
-    setFieldValue(generationFunction());
+  const handleRefresh = () => {
+    dispatch(updateFieldItem({id: id, value: refreshFunction()}))
   };
 
-  return { fieldValue, refreshFieldValue };
+  return { fieldValue, handleRefresh };
 };
 
 export default useField;

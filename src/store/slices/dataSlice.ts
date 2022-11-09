@@ -1,54 +1,51 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IDataSlice {
-  login: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  dateOfBirth: string;
+  fieldList: {
+    id: string;
+    label: string;
+    value: string;
+  }[];
 }
 
 const initialState: IDataSlice = {
-  login: "",
-  password: "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  dateOfBirth: "",
+  fieldList: [],
 };
 
 const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    refreshLogin: (state, action: PayloadAction<string>) => {
-      state.login = action.payload;
+    addFieldItem: (
+      state,
+      action: PayloadAction<{ id: string; value: string; label: string }>
+    ) => {
+      state.fieldList.push({
+        id: action.payload.id,
+        label: action.payload.label,
+        value: action.payload.value,
+      });
     },
-    refreshPassword: (state, action: PayloadAction<string>) => {
-      state.password = action.payload;
+    removeFieldItem: (state, action: PayloadAction<string>) => {
+      if (state.fieldList.length > 0) {
+        state.fieldList = state.fieldList.filter(
+          (entry) => entry.id !== action.payload
+        );
+      }
     },
-    refreshFirstName: (state, action: PayloadAction<string>) => {
-      state.firstName = action.payload;
-    },
-    refreshLastName: (state, action: PayloadAction<string>) => {
-      state.lastName = action.payload;
-    },
-    refreshEmail: (state, action: PayloadAction<string>) => {
-      state.email = action.payload;
-    },
-    refreshDateOfBirth: (state, action: PayloadAction<string>) => {
-      state.dateOfBirth = action.payload;
+    updateFieldItem: (
+      state,
+      action: PayloadAction<{ id: string; value: string }>
+    ) => {
+      state.fieldList = state.fieldList.map((entry) =>
+        entry.id === action.payload.id
+          ? { id: entry.id, label: entry.label, value: action.payload.value }
+          : entry
+      );
     },
   },
 });
 
-export const {
-  refreshLogin,
-  refreshPassword,
-  refreshFirstName,
-  refreshLastName,
-  refreshEmail,
-  refreshDateOfBirth,
-} = dataSlice.actions;
+export const { addFieldItem, removeFieldItem, updateFieldItem } =
+  dataSlice.actions;
 export default dataSlice.reducer;
