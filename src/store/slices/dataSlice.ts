@@ -20,11 +20,19 @@ const dataSlice = createSlice({
       state,
       action: PayloadAction<{ id: string; value: string; label: string }>
     ) => {
-      state.fieldList.push({
-        id: action.payload.id,
-        label: action.payload.label,
-        value: action.payload.value,
-      });
+      if (!state.fieldList.find((entry) => entry.id === action.payload.id)) {
+        state.fieldList.push({
+          id: action.payload.id,
+          label: action.payload.label,
+          value: action.payload.value,
+        });
+      } else {
+        state.fieldList = state.fieldList.map((entry) =>
+          entry.id === action.payload.id
+            ? { id: entry.id, label: entry.label, value: action.payload.value }
+            : entry
+        );
+      }
     },
     removeFieldItem: (state, action: PayloadAction<string>) => {
       if (state.fieldList.length > 0) {
