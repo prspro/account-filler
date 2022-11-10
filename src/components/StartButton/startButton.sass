@@ -1,4 +1,5 @@
 .start-btn
+    $root: &
     margin: 0
     padding: 0
     background: none
@@ -8,6 +9,9 @@
     left: 50%
     transform: translate(-50%, -50%)
     cursor: pointer
+    &:hover
+        #{$root}__icon
+            transform: rotate(180deg)
     &__icon
         height: 150px
         width: 150px

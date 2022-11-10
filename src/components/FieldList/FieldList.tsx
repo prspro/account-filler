@@ -5,9 +5,6 @@ import "./fieldList.sass";
 function FieldList() {
   const { dataFillList } = useFieldList();
 
-  console.log(dataFillList);
-  
-
   return (
     <ul className="field-list">
       {dataFillList.map((fieldItem) => (
