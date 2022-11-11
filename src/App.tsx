@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
-// import { toggleIsDataGenerated } from "./store/slices/appSlice";
 ///
 import FieldList from "./components/FieldList/FieldList";
 import StartButton from "./components/StartButton/StartButton";
 import CustomButton from "./components/CustomButton/CustomButton";
 import SVGicon from "./components/SVGicon/SVGicon";
+import { LineList, LineItem } from "./components/LineList/LineList";
 ///
 import useManipulateData from "./hooks/useManipulateData";
 
@@ -29,20 +29,26 @@ function App() {
             </section>
             <section>
               <div className="container">
-                <CustomButton
-                  onClick={handleDownloadData}
-                  // iconAnimation="scale"
-                >
-                  <span>Download</span>
-                  <SVGicon id={"download"} />
-                </CustomButton>
-                <CustomButton
-                  onClick={handleRefreshAllData}
-                  // iconAnimation="rotate"
-                >
-                  <span>Refresh all</span>
-                  <SVGicon id={"refresh"} />
-                </CustomButton>
+                <LineList>
+                  <LineItem>
+                    <CustomButton
+                      onClick={handleDownloadData}
+                      // iconAnimation="scale"
+                    >
+                      <span>Download</span>
+                      <SVGicon id={"download"} />
+                    </CustomButton>
+                  </LineItem>
+                  <LineItem>
+                    <CustomButton
+                      onClick={handleRefreshAllData}
+                      // iconAnimation="rotate"
+                    >
+                      <span>Refresh all</span>
+                      <SVGicon id={"refresh"} />
+                    </CustomButton>
+                  </LineItem>
+                </LineList>
               </div>
             </section>
           </>
