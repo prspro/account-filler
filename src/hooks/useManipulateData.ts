@@ -1,4 +1,8 @@
 import { faker } from "@faker-js/faker";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../store";
+import { updateFieldItem } from "../store/slices/dataSlice";
+
 // const chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const passwordLength = 32;
@@ -9,6 +13,8 @@ interface IUseDataFill {
     label: string;
     generationFunction: () => string;
   }[];
+  handleDownloadData: () => void;
+  handleRefreshAllData: () => void;
 }
 
 function useDataFill(): IUseDataFill {
@@ -55,8 +61,52 @@ function useDataFill(): IUseDataFill {
     },
   ];
 
+  const stateData = useSelector((state: RootState) => state.data.fieldList);
+
+  const printStateData = () => {
+    const longestLabel = Math.max(
+      ...stateData.map((entry) => entry.label.length)
+    );
+    const modifiedStateData = stateData.map((entry) => {
+      const firstColumn =
+        entry.label + ":" + " ".repeat(longestLabel - entry.label.length);
+      return `${firstColumn} ${entry.value}\r\n`;
+    });
+    return modifiedStateData.join("");
+  };
+
+  const dispatch = useDispatch();
+
+  const handleDownloadData = () => {
+    const element = document.createElement("a");
+    const file = new Blob([printStateData()], {
+      type: "text/plain",
+    });
+    element.href = URL.createObjectURL(file);
+    element.download = "data.txt";
+    document.body.appendChild(element);
+    element.click();
+    element.remove();
+  };
+
+  const handleRefreshAllData = () => {
+    stateData.forEach((entry) =>
+      dispatch(
+        updateFieldItem({
+          id: entry.id,
+          value:
+            dataFillList
+              .find((item) => item.id === entry.id)
+              ?.generationFunction() || "",
+        })
+      )
+    );
+  };
+
   return {
     dataFillList,
+    handleDownloadData,
+    handleRefreshAllData,
   };
 }
 

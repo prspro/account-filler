@@ -1,8 +1,8 @@
+import { useEffect } from "react";
+///
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
 import { updateFieldItem, addFieldItem } from "../../store/slices/dataSlice";
-///
-import { useEffect } from "react";
 
 interface IUseFieldArg {
   id: string;
@@ -21,13 +21,10 @@ const useField = ({ id, placeholder, refreshFunction }: IUseFieldArg): IUseField
       (entry) => entry.id === id
     )?.value || "";
 
-  const isFieldListShown = useSelector((state: RootState) => state.app.isDataGenerated);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(addFieldItem({ id: id, label: placeholder, value: refreshFunction() }));
-    // dispatch(updateFieldItem({ id: id, value: refreshFunction() }));
   }, [])
 
   const handleRefresh = () => {

@@ -1,11 +1,11 @@
-import useDataFill from "../../hooks/useDataFill";
+import useManipulateData from "../../hooks/useManipulateData";
 
 interface IUseFieldList {
   dataFillList: { id: string; label: string; generationFunction: () => string }[];
 }
 
 function useFieldList(): IUseFieldList {
-  const { dataFillList } = useDataFill();
+  const { dataFillList } = useManipulateData();
 
   return {
     dataFillList,

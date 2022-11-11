@@ -1,21 +1,20 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import type { RootState } from "./store";
-import { toggleIsDataGenerated } from "./store/slices/appSlice";
+// import { toggleIsDataGenerated } from "./store/slices/appSlice";
 ///
 import FieldList from "./components/FieldList/FieldList";
 import StartButton from "./components/StartButton/StartButton";
 import CustomButton from "./components/CustomButton/CustomButton";
+import SVGicon from "./components/SVGicon/SVGicon";
 ///
-import useDownloadData from "./hooks/useDownloadData";
+import useManipulateData from "./hooks/useManipulateData";
 
 function App() {
   const isDataGenerated = useSelector(
     (state: RootState) => state.app.isDataGenerated
   );
 
-  const { handleDownloadData } = useDownloadData();
-
-  const dispatch = useDispatch();
+  const { handleDownloadData, handleRefreshAllData } = useManipulateData();
 
   return (
     <div className="app">
@@ -31,15 +30,20 @@ function App() {
             <section>
               <div className="container">
                 <CustomButton
-                  iconID="download"
-                  text={"Download"}
                   onClick={handleDownloadData}
-                />
+                  // iconAnimation="scale"
+                >
+                  <span>Download</span>
+                  <SVGicon id={"download"} />
+                </CustomButton>
                 <CustomButton
-                  text={"Close"}
-                  onClick={() => dispatch(toggleIsDataGenerated())}
-                />
-              </div>{" "}
+                  onClick={handleRefreshAllData}
+                  // iconAnimation="rotate"
+                >
+                  <span>Refresh all</span>
+                  <SVGicon id={"refresh"} />
+                </CustomButton>
+              </div>
             </section>
           </>
         ) : (
