@@ -1,30 +1,25 @@
-import classNames from 'classnames';
+import classNames from "classnames";
 import "./lineList.sass";
+import React, { ReactNode, FC } from "react";
 
-interface ILineList {
+interface ILineListProps {
   className?: string;
-  children: JSX.Element | JSX.Element[];
+  children: ReactNode;
 }
 
-interface ILineItem {
+interface ILineItemProps {
   className?: string;
-  children: JSX.Element | JSX.Element[] | string;
+  children: ReactNode;
 }
 
-const LineList = ({children, className}: ILineList) => {
+const LineList: FC<ILineListProps> = ({ children, className }) => {
+  return <ul className={classNames("line-list", className)}>{children}</ul>;
+};
+
+const LineItem: FC<ILineItemProps> = ({ children, className }) => {
   return (
-    <ul className={classNames("line-list", className)}>
-      {children}
-    </ul>
-  )
-}
+    <li className={classNames("line-list__item", className)}>{children}</li>
+  );
+};
 
-const LineItem = ({children, className}: ILineItem) => {
-  return (
-    <li className={classNames("line-list__item", className)}>
-      {children}
-    </li>
-  )
-}
-
-export {LineList, LineItem}
+export { LineList, LineItem };

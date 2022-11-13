@@ -1,8 +1,9 @@
 import Field from "../Field/Field";
 import useFieldList from "./useFieldList";
+import React, { FC } from "react";
 import "./fieldList.sass";
 
-function FieldList() {
+const FieldList: FC = () => {
   const { dataFillList } = useFieldList();
 
   return (
@@ -18,6 +19,6 @@ function FieldList() {
       ))}
     </ul>
   );
-}
+};
 
 export default FieldList;

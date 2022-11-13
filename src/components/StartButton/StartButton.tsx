@@ -1,12 +1,13 @@
 import useStartButton from "./useStartButton";
 import "./startButton.sass";
 import SVGicon from "../SVGicon/SVGicon";
+import React, {FC} from "react";
 
-interface IStartButtonArg {
+interface IStartButtonProps {
   placeholder: string;
 }
 
-const StartButton = ({ placeholder }: IStartButtonArg) => {
+const StartButton: FC<IStartButtonProps> = ({ placeholder }) => {
   const { handleStart } = useStartButton();
 
   return (

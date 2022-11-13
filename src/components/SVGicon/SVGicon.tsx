@@ -1,14 +1,15 @@
 // import useSVGicon from "./useSVGicon";
 import sprite from "../../img/sprite.svg";
 import classNames from "classnames";
+import { FC } from "react";
 
-interface ISVGIconArgs {
+interface ISVGIconProps {
   className?: string;
   id: string;
 }
 
-const SVGicon = ({ className, id }: ISVGIconArgs) => {
-
+const SVGicon: FC<ISVGIconProps> = ({ className, id }) => {
+  
   return (
     <svg className={classNames("svg-icon", id, className)}>
       <use href={sprite + "#" + id} />

@@ -1,8 +1,8 @@
-import React from "react";
+import React, {FC} from "react";
 import "./customButton.sass";
 import classNames from "classnames";
 
-interface ICustomButtonArg extends React.HTMLAttributes<HTMLButtonElement> {
+interface ICustomButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
   children: JSX.Element | JSX.Element[];
   className?: string;
   onClick: () => void;
@@ -11,14 +11,14 @@ interface ICustomButtonArg extends React.HTMLAttributes<HTMLButtonElement> {
   // iconID?: string;
 }
 
-const CustomButton: React.FunctionComponent<ICustomButtonArg> = ({
+const CustomButton: FC<ICustomButtonProps> = ({
   className,
   // iconAnimation,
   // text,
   // iconID,
   children,
   onClick,
-}: ICustomButtonArg) => {
+}) => {
   return (
     <button
       className={classNames("custom-btn", className

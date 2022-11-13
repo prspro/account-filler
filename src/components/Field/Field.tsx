@@ -1,16 +1,20 @@
 import useField from "./useField";
-import "./field.sass";
 import SVGicon from "../SVGicon/SVGicon";
-// import { ReactComponent as RefreshIcon } from "../../img/svg/refresh-svgrepo-com.svg";
+import "./field.sass";
+import React, { FC } from "react";
 
-interface IFieldArgs {
+interface IFieldProps {
   placeholder: string;
   id: string;
   refreshFunction: () => string;
 }
 
-const Field = ({ id, refreshFunction, placeholder }: IFieldArgs) => {
-  const { fieldValue, handleRefresh } = useField({ id, placeholder, refreshFunction });
+const Field: FC<IFieldProps> = ({ id, refreshFunction, placeholder }) => {
+  const { fieldValue, handleRefresh } = useField({
+    id,
+    placeholder,
+    refreshFunction,
+  });
 
   return (
     <div className="field">
@@ -20,7 +24,7 @@ const Field = ({ id, refreshFunction, placeholder }: IFieldArgs) => {
       </div>
       <button className="field__refresh" onClick={handleRefresh}>
         {/* <RefreshIcon className="svg-icon refresh" /> */}
-        <SVGicon id={"refresh"} className={"field__icon"}/>
+        <SVGicon id={"refresh"} className={"field__icon"} />
       </button>
     </div>
   );
