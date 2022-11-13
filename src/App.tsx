@@ -20,8 +20,11 @@ function App() {
 
   return (
     <div className="app">
-      <header>
-        <Burger />
+      <header className="header">
+        <Burger className="header__burger"/>
+        <a href="/" className="header__title">
+          Lorem, ipsum dolor.
+        </a>
       </header>
       <main>
         {isDataGenerated ? (
@@ -60,7 +63,7 @@ function App() {
           <StartButton placeholder={"Generate me!"} />
         )}
       </main>
-      <footer>
+      <footer className="footer">
         <ul>
           <li>link1</li>
           <li>link4</li>
