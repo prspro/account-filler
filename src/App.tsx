@@ -6,8 +6,10 @@ import StartButton from "./components/StartButton/StartButton";
 import CustomButton from "./components/CustomButton/CustomButton";
 import SVGicon from "./components/SVGicon/SVGicon";
 import { LineList, LineItem } from "./components/LineList/LineList";
+import Burger from "./components/Burger/Burger";
 ///
 import useManipulateData from "./hooks/useManipulateData";
+import Overlay from "./components/Overlay/Overlay";
 
 function App() {
   const isDataGenerated = useSelector(
@@ -18,7 +20,9 @@ function App() {
 
   return (
     <div className="app">
-      <header>header</header>
+      <header>
+        <Burger />
+      </header>
       <main>
         {isDataGenerated ? (
           <>
@@ -56,7 +60,15 @@ function App() {
           <StartButton placeholder={"Generate me!"} />
         )}
       </main>
-      <footer>footer</footer>
+      <footer>
+        <ul>
+          <li>link1</li>
+          <li>link4</li>
+          <li>link3</li>
+          <li>link2</li>
+        </ul>
+      </footer>
+      <Overlay />
     </div>
   );
 }

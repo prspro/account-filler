@@ -1,0 +1,39 @@
+$barWidth: 35px
+$barHeight: 5px
+    
+.burger
+    $root: &
+    width: $barWidth
+    height: 30px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    cursor: pointer
+    padding: 0
+    background: none
+    // border: 1px solid #000
+    border: none
+    &__bar
+        // width: 20px
+        border-radius: 3px
+        height: $barHeight
+        background-color: #000
+        margin-bottom: $barHeight
+        transition: all .3s
+        opacity: 1
+        width: $barWidth
+        &:last-of-type
+            margin-bottom: 0
+    &.active
+        #{$root}__bar
+            &:nth-of-type(1)
+                position: relative
+                transform: translate(0 , $barHeight * 2) rotate(45deg)
+            &:nth-of-type(2)
+                width: 0
+                opacity: 0
+            &:nth-of-type(3)
+                position: relative
+                transform: translate(0 , -$barHeight * 2) rotate(-45deg)
+                
+        

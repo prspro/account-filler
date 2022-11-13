@@ -49,16 +49,16 @@ function useDataFill(): IUseDataFill {
   };
 
   const dataFillList = [
-    { id: "login", label: "Login", generationFunction: login },
-    { id: "password", label: "Password", generationFunction: password },
     { id: "firstName", label: "First name", generationFunction: firstName },
     { id: "lastName", label: "Last name", generationFunction: lastName },
-    { id: "email", label: "Email", generationFunction: email },
     {
       id: "dateOfBirth",
       label: "Date of birth",
       generationFunction: dateOfBirth,
     },
+    { id: "login", label: "Login", generationFunction: login },
+    { id: "password", label: "Password", generationFunction: password },
+    { id: "email", label: "Email", generationFunction: email },
   ];
 
   const stateData = useSelector((state: RootState) => state.data.fieldList);
