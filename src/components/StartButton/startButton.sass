@@ -1,3 +1,5 @@
+@import "../../styles/_breackpoints"
+
 .start-btn
     $root: &
     margin: 0
@@ -12,7 +14,7 @@
     &:hover
         #{$root}__icon
             transform: rotate(180deg)
-    &__icon
+    & &__icon
         height: 150px
         width: 150px
         margin-bottom: 10px
@@ -20,3 +22,11 @@
         font-size: 1.8rem
         font-weight: 700
         margin: 0
+
+@media screen and (max-width: $container_sm)
+    .start-btn
+        & &__icon
+            height: 100px
+            width: 100px
+        &__text
+            font-size: 1.4rem

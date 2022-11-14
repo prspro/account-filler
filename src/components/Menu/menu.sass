@@ -1,0 +1,17 @@
+@import "../../styles/_breackpoints"
+
+.menu
+    position: fixed
+    top: 0
+    bottom: 0
+    right: 100%
+    width: 300px
+    background-color: #fff
+    transition: all .3s
+    z-index: 11
+    &.shown
+        transform: translate(100%, 0)
+
+@media screen and (max-width: $container_sm)
+    .menu
+        width: 200px

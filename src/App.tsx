@@ -7,9 +7,10 @@ import CustomButton from "./components/CustomButton/CustomButton";
 import SVGicon from "./components/SVGicon/SVGicon";
 import { LineList, LineItem } from "./components/LineList/LineList";
 import Burger from "./components/Burger/Burger";
+import Overlay from "./components/Overlay/Overlay";
+import Menu from "./components/Menu/Menu";
 ///
 import useManipulateData from "./hooks/useManipulateData";
-import Overlay from "./components/Overlay/Overlay";
 
 function App() {
   const isDataGenerated = useSelector(
@@ -25,6 +26,7 @@ function App() {
         <a href="/" className="header__title">
           Personal Data Generator
         </a>
+        <Menu />
       </header>
       <main>
         {isDataGenerated ? (
