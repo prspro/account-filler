@@ -10,7 +10,7 @@ interface IFieldProps {
 }
 
 const Field: FC<IFieldProps> = ({ id, refreshFunction, placeholder }) => {
-  const { fieldValue, handleRefresh } = useField({
+  const { fieldValue, handleRefresh, handleCopy } = useField({
     id,
     placeholder,
     refreshFunction,
@@ -25,6 +25,9 @@ const Field: FC<IFieldProps> = ({ id, refreshFunction, placeholder }) => {
       <button className="field__refresh" onClick={handleRefresh}>
         {/* <RefreshIcon className="svg-icon refresh" /> */}
         <SVGicon id={"refresh"} className={"field__icon"} />
+      </button>
+      <button className="field__copy" onClick={handleCopy}>
+        <SVGicon id={"copy"} className={"field__icon"} />
       </button>
     </div>
   );

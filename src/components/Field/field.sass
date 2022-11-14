@@ -27,7 +27,7 @@
         scrollbar-width: none  // Hide scrollbar for Firefox
         &::-webkit-scrollbar
             display: none // Hide scrollbar for Chrome, Safari and Opera
-    &__refresh
+    &__refresh, &__copy
         cursor: pointer
         border: none
         background: none
@@ -35,7 +35,10 @@
         margin: 0
         height: 20px
         width: 22px
+    &__refresh
         &:hover
             #{$root}__icon
                 transform: rotate(180deg)
+    &__copy
+
     &__icon
