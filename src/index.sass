@@ -13,6 +13,9 @@
         flex: 1
         position: relative
 
+body.no-scrollable
+    overflow: hidden
+
 .header, .footer
     padding: 20px 15px
     background-color: #D9D9D9
@@ -23,6 +26,9 @@
     display: flex
     align-items: center
     justify-content: center
+    position: sticky
+    top: 0
+    z-index: 2
     &__burger
         position: absolute
         left: 15px
@@ -35,6 +41,7 @@
 
 .footer
     &__link
+        color: #000
         text-decoration: none
         font-size: 0.9rem
 

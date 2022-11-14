@@ -13,6 +13,7 @@ const useBurger = (): IUseBurger => {
   const handleClick = () => {
     dispatch(toggleMenu());
     dispatch(toggleOverlay());
+    document.getElementsByTagName("BODY")[0].classList.toggle("no-scrollable");
   };
 
   return { isMenuShown, handleClick };

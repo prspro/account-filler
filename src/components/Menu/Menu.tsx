@@ -1,6 +1,7 @@
 import { FC } from "react";
 import classNames from "classnames";
 import useMenu from "./useMenu";
+import Burger from "../Burger/Burger";
 ///
 import "./menu.sass";
 
@@ -13,7 +14,10 @@ const Menu: FC<IMenuProps> = ({ className }) => {
 
   return (
     <div className={classNames("menu", className, { shown: isMenuShown })}>
-      Menu
+      <Burger className="menu__burger"/>
+      <span>
+        Lorem, ipsum.
+      </span>
     </div>
   );
 };

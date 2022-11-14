@@ -26,9 +26,9 @@ function App() {
         <a href="/" className="header__title">
           Personal Data Generator
         </a>
-        <Menu />
       </header>
       <main>
+        <Menu />
         {isDataGenerated ? (
           <>
             <section>
@@ -80,11 +80,31 @@ function App() {
           <LineItem>
             <a
               className="footer__link"
-              href="https://github.com/prspro"
+              href="https://github.com/prspro/account-filler"
               rel="noreferrer"
               target="_blank"
             >
               GitHub
+            </a>
+          </LineItem>
+          <LineItem>
+            <a
+              className="footer__link"
+              href="https://www.linkedin.com/in/48548b122/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Development
+            </a>
+          </LineItem>
+          <LineItem>
+            <a
+              className="footer__link"
+              href="https://www.linkedin.com/in/0a9a041a3/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              Design
             </a>
           </LineItem>
         </LineList>

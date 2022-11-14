@@ -10,7 +10,7 @@ interface IFieldProps {
 }
 
 const Field: FC<IFieldProps> = ({ id, refreshFunction, placeholder }) => {
-  const { fieldValue, handleRefresh, handleCopy } = useField({
+  const { fieldValue, handleRefresh, handleCopy, isCopied } = useField({
     id,
     placeholder,
     refreshFunction,
@@ -27,7 +27,7 @@ const Field: FC<IFieldProps> = ({ id, refreshFunction, placeholder }) => {
       </div>
       <div className="field__row">
         <div className="field__value-wrap">
-          <p className="field__value">{fieldValue}</p>
+          <p className="field__value">{isCopied? "Copied!" :fieldValue}</p>
         </div>
         <button className="field__copy" onClick={handleCopy}>
           <SVGicon id={"copy"} className={"field__icon"} />

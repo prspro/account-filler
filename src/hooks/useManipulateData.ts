@@ -45,7 +45,13 @@ function useDataFill(): IUseDataFill {
 
   const dateOfBirth = () => {
     const dateValue = faker.date.birthdate({ min: 22, max: 35, mode: "age" });
-    return `${dateValue.getDate()} ${dateValue.getMonth()} ${dateValue.getFullYear()}`;
+    return `${
+      dateValue.getDate() < 10 ? "0" + dateValue.getDate() : dateValue.getDate()
+    }.${
+      (dateValue.getMonth() + 1) < 10
+        ? "0" + (dateValue.getMonth() + 1)
+        : (dateValue.getMonth() + 1)
+    }.${dateValue.getFullYear()}`;
   };
 
   const dataFillList = [
@@ -83,7 +89,7 @@ function useDataFill(): IUseDataFill {
       type: "text/plain",
     });
     element.href = URL.createObjectURL(file);
-    element.download = "data.txt";
+    element.download = "accountdata.txt";
     document.body.appendChild(element);
     element.click();
     element.remove();

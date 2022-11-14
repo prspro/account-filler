@@ -15,6 +15,7 @@ const useOverlay = (): IUseOverlay => {
   const handleClick = () => {
     dispatch(hideOverlay());
     dispatch(hideMenu());
+    document.getElementsByTagName("BODY")[0].classList.toggle("no-scrollable");
   };
 
   return {
