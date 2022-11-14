@@ -18,17 +18,21 @@ const Field: FC<IFieldProps> = ({ id, refreshFunction, placeholder }) => {
 
   return (
     <div className="field">
-      <span className="field__name">{placeholder}:</span>
-      <div className="field__value-wrap">
-        <p className="field__value">{fieldValue}</p>
+      <div className="field__row">
+        <span className="field__name">{placeholder}:</span>
+        <button className="field__refresh" onClick={handleRefresh}>
+          {/* <RefreshIcon className="svg-icon refresh" /> */}
+          <SVGicon id={"refresh"} className={"field__icon"} />
+        </button>
       </div>
-      <button className="field__refresh" onClick={handleRefresh}>
-        {/* <RefreshIcon className="svg-icon refresh" /> */}
-        <SVGicon id={"refresh"} className={"field__icon"} />
-      </button>
-      <button className="field__copy" onClick={handleCopy}>
-        <SVGicon id={"copy"} className={"field__icon"} />
-      </button>
+      <div className="field__row">
+        <div className="field__value-wrap">
+          <p className="field__value">{fieldValue}</p>
+        </div>
+        <button className="field__copy" onClick={handleCopy}>
+          <SVGicon id={"copy"} className={"field__icon"} />
+        </button>
+      </div>
     </div>
   );
 };
