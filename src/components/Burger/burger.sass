@@ -1,3 +1,4 @@
+@import "../../styles/_breackpoints"
 $barWidth: 35px
 $barHeight: 5px
     
@@ -36,4 +37,26 @@ $barHeight: 5px
                 position: relative
                 transform: translate(0 , -$barHeight * 2) rotate(-45deg)
                 
-        
+@media screen and (max-width: $container_sm)
+    $barWidth: 23px
+    $barHeight: 3px
+    .burger
+        $root: &
+        width: $barWidth
+        height: 20px
+        &__bar
+            width: $barWidth
+            height: $barHeight
+            margin-bottom: $barHeight
+        &.active
+            #{$root}__bar
+                &:nth-of-type(1)
+                    position: relative
+                    transform: translate(0 , $barHeight * 2) rotate(45deg)
+                &:nth-of-type(2)
+                    width: 0
+                    opacity: 0
+                &:nth-of-type(3)
+                    position: relative
+                    transform: translate(0 , -$barHeight * 2) rotate(-45deg)
+

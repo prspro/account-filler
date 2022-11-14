@@ -21,9 +21,9 @@ function App() {
   return (
     <div className="app">
       <header className="header">
-        <Burger className="header__burger"/>
+        <Burger className="header__burger" />
         <a href="/" className="header__title">
-          Lorem, ipsum dolor.
+          Personal Data Generator
         </a>
       </header>
       <main>
@@ -64,12 +64,28 @@ function App() {
         )}
       </main>
       <footer className="footer">
-        <ul>
-          <li>link1</li>
-          <li>link4</li>
-          <li>link3</li>
-          <li>link2</li>
-        </ul>
+        <LineList>
+          <LineItem>
+            <a
+              className="footer__link"
+              href="https://keepass.info/"
+              rel="noreferrer"
+              target="_blank"
+            >
+              KeePass
+            </a>
+          </LineItem>
+          <LineItem>
+            <a
+              className="footer__link"
+              href="https://github.com/prspro"
+              rel="noreferrer"
+              target="_blank"
+            >
+              GitHub
+            </a>
+          </LineItem>
+        </LineList>
       </footer>
       <Overlay />
     </div>

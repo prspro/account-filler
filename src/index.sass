@@ -1,6 +1,7 @@
 @import "./styles/container"
 @import "./styles/svg-icons"
 @import "./styles/fonts.css"
+@import "./styles/_breackpoints"
 
 .app
     display: flex
@@ -32,5 +33,15 @@
         font-size: 1.8125rem
         transition: all .3s
 
+.footer
+    &__link
+        text-decoration: none
+        font-size: 0.9rem
+
 section
     margin: 20px 0
+
+@media screen and (max-width: $container_sm)
+    .header
+        &__title
+            font-size: 1rem
