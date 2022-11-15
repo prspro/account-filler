@@ -13,7 +13,27 @@
     &.shown
         transform: translate(100%, 0)
     &__burger
-        margin-bottom: 20px
+        margin-bottom: 35px
+    &__title
+        font-size: 1.25rem
+        font-weight: 700
+    &__list
+        list-style: none
+        padding: 0
+        display: inline-block
+    &__item
+        margin-bottom: 12px
+        display: flex
+        justify-content: space-between
+        align-items: center
+        border-bottom: 1px solid #000
+        padding-bottom: 4px
+        &:last-of-type
+            margin-bottom: 0
+            border-bottom: none
+        & span
+            display: inline-block
+            padding-right: 10px
 
 @media screen and (max-width: $container_sm)
     .menu

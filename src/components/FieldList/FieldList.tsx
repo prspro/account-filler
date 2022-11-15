@@ -1,19 +1,18 @@
 import Field from "../Field/Field";
 import useFieldList from "./useFieldList";
-import React, { FC } from "react";
+import { FC } from "react";
 import "./fieldList.sass";
 
 const FieldList: FC = () => {
-  const { dataFillList } = useFieldList();
+  const { dataList } = useFieldList();
 
   return (
     <ul className="field-list">
-      {dataFillList.map((fieldItem) => (
+      {dataList.map((fieldItem) => (
         <li key={fieldItem.id} className="field-list__item">
           <Field
-            placeholder={fieldItem.label}
+            label={fieldItem.label}
             id={fieldItem.id}
-            refreshFunction={fieldItem.generationFunction}
           ></Field>
         </li>
       ))}

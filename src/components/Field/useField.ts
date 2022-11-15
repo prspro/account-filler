@@ -2,14 +2,14 @@ import { useEffect } from "react";
 ///
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../store";
-import { updateFieldItem, addFieldItem } from "../../store/slices/dataSlice";
+import { updateFieldValue } from "../../store/slices/dataSlice";
 ///
 import useCopy from "../../hooks/useCopy";
+import useManipulateData from "../../hooks/useManipulateData"
 
-interface IUseFieldArg {
+interface IUseFieldProps {
   id: string;
-  placeholder: string;
-  refreshFunction: () => string;
+  label: string;
 }
 
 interface IUseField {
@@ -21,26 +21,25 @@ interface IUseField {
 
 const useField = ({
   id,
-  placeholder,
-  refreshFunction,
-}: IUseFieldArg): IUseField => {
+  label,
+}: IUseFieldProps): IUseField => {
   const fieldValue =
     useSelector((state: RootState) => state.data.fieldList).find(
       (entry) => entry.id === id
     )?.value || "";
 
   const { isCopied, handleCopy } = useCopy(fieldValue);
+  const { dataFillList} = useManipulateData();
 
+  const refreshFunction = dataFillList.find(entry => entry.id === id)?.generationFunction || (() => "error");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      addFieldItem({ id: id, label: placeholder, value: refreshFunction() })
-    );
+    dispatch(updateFieldValue({ id: id, value: refreshFunction() }));
   }, []);
 
   const handleRefresh = () => {
-    dispatch(updateFieldItem({ id: id, value: refreshFunction() }));
+    dispatch(updateFieldValue({ id: id, value: refreshFunction() }));
   };
 
   return { fieldValue, handleRefresh, isCopied, handleCopy };

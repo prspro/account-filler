@@ -1,7 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
-import { updateFieldItem } from "../store/slices/dataSlice";
+import { updateFieldValue } from "../store/slices/dataSlice";
 
 // const chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -10,7 +10,6 @@ const passwordLength = 32;
 interface IUseDataFill {
   dataFillList: {
     id: string;
-    label: string;
     generationFunction: () => string;
   }[];
   handleDownloadData: () => void;
@@ -43,37 +42,69 @@ function useDataFill(): IUseDataFill {
     return faker.internet.email();
   };
 
+  const secretQuestion = () => {
+    return `${faker.word.adjective()} ${faker.word.noun()}`;
+  };
+  const secretAnswer = () => {
+    return `${faker.word.adverb()} ${faker.word.adjective()} ${faker.word.noun()}`;
+  };
+
   const dateOfBirth = () => {
     const dateValue = faker.date.birthdate({ min: 22, max: 35, mode: "age" });
     return `${
       dateValue.getDate() < 10 ? "0" + dateValue.getDate() : dateValue.getDate()
     }.${
-      (dateValue.getMonth() + 1) < 10
+      dateValue.getMonth() + 1 < 10
         ? "0" + (dateValue.getMonth() + 1)
-        : (dateValue.getMonth() + 1)
+        : dateValue.getMonth() + 1
     }.${dateValue.getFullYear()}`;
   };
 
   const dataFillList = [
-    { id: "firstName", label: "First name", generationFunction: firstName },
-    { id: "lastName", label: "Last name", generationFunction: lastName },
+    {
+      id: "firstName",
+      generationFunction: firstName,
+    },
+    {
+      id: "lastName",
+      generationFunction: lastName,
+    },
     {
       id: "dateOfBirth",
-      label: "Date of birth",
       generationFunction: dateOfBirth,
     },
-    { id: "login", label: "Login", generationFunction: login },
-    { id: "password", label: "Password", generationFunction: password },
-    { id: "email", label: "Email", generationFunction: email },
+    {
+      id: "login",
+      generationFunction: login,
+    },
+    {
+      id: "password",
+      generationFunction: password,
+    },
+    {
+      id: "email",
+      generationFunction: email,
+    },
+    {
+      id: "secretQuestion",
+      generationFunction: secretQuestion,
+    },
+    {
+      id: "secretAnswer",
+      generationFunction: secretAnswer,
+    },
   ];
 
   const stateData = useSelector((state: RootState) => state.data.fieldList);
 
   const printStateData = () => {
+
+    const shownData = stateData.filter(entry => entry.isShown);
+
     const longestLabel = Math.max(
-      ...stateData.map((entry) => entry.label.length)
+      ...shownData.map((entry) => entry.label.length)
     );
-    const modifiedStateData = stateData.map((entry) => {
+    const modifiedStateData = shownData.map((entry) => {
       const firstColumn =
         entry.label + ":" + " ".repeat(longestLabel - entry.label.length);
       return `${firstColumn} ${entry.value}\r\n`;
@@ -98,7 +129,7 @@ function useDataFill(): IUseDataFill {
   const handleRefreshAllData = () => {
     stateData.forEach((entry) =>
       dispatch(
-        updateFieldItem({
+        updateFieldValue({
           id: entry.id,
           value:
             dataFillList

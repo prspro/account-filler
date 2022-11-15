@@ -4,22 +4,20 @@ import "./field.sass";
 import React, { FC } from "react";
 
 interface IFieldProps {
-  placeholder: string;
+  label: string;
   id: string;
-  refreshFunction: () => string;
 }
 
-const Field: FC<IFieldProps> = ({ id, refreshFunction, placeholder }) => {
+const Field: FC<IFieldProps> = ({ id, label }) => {
   const { fieldValue, handleRefresh, handleCopy, isCopied } = useField({
     id,
-    placeholder,
-    refreshFunction,
+    label,
   });
 
   return (
     <div className="field">
       <div className="field__row">
-        <span className="field__name">{placeholder}:</span>
+        <span className="field__name">{label}:</span>
         <button className="field__refresh" onClick={handleRefresh}>
           {/* <RefreshIcon className="svg-icon refresh" /> */}
           <SVGicon id={"refresh"} className={"field__icon"} />

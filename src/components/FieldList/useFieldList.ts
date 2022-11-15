@@ -1,14 +1,22 @@
-import useManipulateData from "../../hooks/useManipulateData";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 interface IUseFieldList {
-  dataFillList: { id: string; label: string; generationFunction: () => string }[];
+  dataList: {
+    id: string;
+    label: string;
+  }[];
 }
 
 function useFieldList(): IUseFieldList {
-  const { dataFillList } = useManipulateData();
+  const dataList = useSelector((state: RootState) => state.data.fieldList)
+    .filter((entry) => entry.isShown)
+    .map((entry) => {
+      return { id: entry.id, label: entry.label };
+    });
 
   return {
-    dataFillList,
+    dataList,
   };
 }
 

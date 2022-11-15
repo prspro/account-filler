@@ -10,14 +10,24 @@ interface IMenuProps {
 }
 
 const Menu: FC<IMenuProps> = ({ className }) => {
-  const { isMenuShown } = useMenu();
+  const { isMenuShown, dataList, handleChange } = useMenu();
 
   return (
     <div className={classNames("menu", className, { shown: isMenuShown })}>
       <Burger className="menu__burger"/>
-      <span>
-        Lorem, ipsum.
-      </span>
+      <span className="menu__title">Options</span>
+      <form className="menu__form" action="/">
+        <ul className="menu__list">
+          {dataList.map(entry => (
+            <li key={entry.id} className="menu__item">
+              <span>
+                {entry.label}
+              </span>
+              <input type="checkbox" defaultChecked={entry.isShown} onChange={(e) => {handleChange(e, entry.id)}}/>
+            </li>
+          ))}
+        </ul>
+      </form>
     </div>
   );
 };
