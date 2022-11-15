@@ -34,7 +34,9 @@ const useField = ({ id, label }: IUseFieldProps): IUseField => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(updateFieldValue({ id: id, value: refreshFunction() }));
+    if (fieldValue === "") {
+      dispatch(updateFieldValue({ id: id, value: refreshFunction() }));
+    }
   }, []);
 
   const handleRefresh = () => {

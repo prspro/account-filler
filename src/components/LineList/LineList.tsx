@@ -13,7 +13,11 @@ interface ILineItemProps {
 }
 
 const LineList: FC<ILineListProps> = ({ children, className }) => {
-  return <ul className={classNames("line-list", className)}>{children}</ul>;
+  return (
+    <div>
+      <ul className={classNames("line-list", className)}>{children}</ul>
+    </div>
+  );
 };
 
 const LineItem: FC<ILineItemProps> = ({ children, className }) => {

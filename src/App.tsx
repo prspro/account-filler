@@ -1,23 +1,26 @@
+import React, { Suspense } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "./store";
 ///
-import FieldList from "./components/FieldList/FieldList";
+// import FieldList from "./components/FieldList/FieldList";
 import StartButton from "./components/StartButton/StartButton";
-import CustomButton from "./components/CustomButton/CustomButton";
-import SVGicon from "./components/SVGicon/SVGicon";
+// import CustomButton from "./components/CustomButton/CustomButton";
+// import SVGicon from "./components/SVGicon/SVGicon";
 import { LineList, LineItem } from "./components/LineList/LineList";
 import Burger from "./components/Burger/Burger";
 import Overlay from "./components/Overlay/Overlay";
 import Menu from "./components/Menu/Menu";
 ///
-import useManipulateData from "./hooks/useManipulateData";
+// import useManipulateData from "./hooks/useManipulateData";
+
+const Fields = React.lazy(() => import("./components/Fields/Fields"));
 
 function App() {
   const isDataGenerated = useSelector(
     (state: RootState) => state.app.isDataGenerated
   );
 
-  const { handleDownloadData, handleRefreshAllData } = useManipulateData();
+  // const { handleDownloadData, handleRefreshAllData } = useManipulateData();
 
   return (
     <div className="app">
@@ -31,29 +34,15 @@ function App() {
         <Menu />
         {isDataGenerated ? (
           <>
-            <section>
-              <div className="container">
-                <FieldList />
-              </div>
-            </section>
-            <section>
-              <div className="container">
-                <LineList>
-                  <LineItem>
-                    <CustomButton onClick={handleDownloadData}>
-                      <span>Download</span>
-                      <SVGicon id={"download"} />
-                    </CustomButton>
-                  </LineItem>
-                  <LineItem>
-                    <CustomButton onClick={handleRefreshAllData}>
-                      <span>Refresh all</span>
-                      <SVGicon id={"refresh"} />
-                    </CustomButton>
-                  </LineItem>
-                </LineList>
-              </div>
-            </section>
+            <Suspense
+              fallback={<StartButton placeholder={"Generating data..."} />}
+            >
+              <section>
+                <div className="container">
+                  <Fields />
+                </div>
+              </section>
+            </Suspense>
           </>
         ) : (
           <StartButton placeholder={"Generate me!"} />
