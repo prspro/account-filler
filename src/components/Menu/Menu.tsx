@@ -20,10 +20,13 @@ const Menu: FC<IMenuProps> = ({ className }) => {
         <ul className="menu__list">
           {dataList.map(entry => (
             <li key={entry.id} className="menu__item">
-              <span>
-                {entry.label}
-              </span>
-              <input type="checkbox" defaultChecked={entry.isShown} onChange={(e) => {handleChange(e, entry.id)}}/>
+              <label className="menu__checkbox-wrap">
+                <span>
+                  {entry.label}
+                </span>
+                <input type="checkbox" defaultChecked={entry.isShown} onChange={(e) => {handleChange(e, entry.id)}}/>
+                <div className="menu__checkmark"></div>
+              </label>
             </li>
           ))}
         </ul>

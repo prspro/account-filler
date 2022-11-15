@@ -1,6 +1,7 @@
 @import "../../styles/_breackpoints"
 
 .menu
+    $root: &
     position: fixed
     top: 0
     bottom: 0
@@ -23,19 +24,50 @@
         display: inline-block
     &__item
         margin-bottom: 12px
-        display: flex
-        justify-content: space-between
-        align-items: center
         border-bottom: 1px solid #000
         padding-bottom: 4px
         &:last-of-type
             margin-bottom: 0
             border-bottom: none
+    &__checkbox-wrap
+        display: flex
+        justify-content: space-between
+        align-items: center
         & span
             display: inline-block
             padding-right: 10px
+        & input
+            cursor: pointer
+            opacity: 0
+            cursor: pointer
+            height: 0
+            width: 0
+            &:checked ~
+                #{$root}__checkmark
+                    background-color: #FF8C00
+                    &::after
+                        display: block
+
+    &__checkmark
+        position: relative
+        height: 20px
+        width: 20px
+        background-color: #D9D9D9
+        transition: all .3s
+        &:hover
+            background-color: #bbb
+        &::after
+            content: ""
+            position: absolute
+            display: none
+            top: 50%
+            left: 50%
+            transform: translate(-50%, -50%) translate(0, -2px) rotate(45deg)
+            width: 5px
+            height: 10px
+            border: solid white
+            border-width: 0 3px 3px 0
 
 @media screen and (max-width: $container_sm)
     .menu
-        // padding: 70px 6px 6px
         width: 200px
