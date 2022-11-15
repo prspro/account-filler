@@ -11,7 +11,6 @@ interface IFieldProps {
 const Field: FC<IFieldProps> = ({ id, label }) => {
   const { fieldValue, handleRefresh, handleCopy, isCopied } = useField({
     id,
-    label,
   });
 
   return (

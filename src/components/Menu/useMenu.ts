@@ -20,12 +20,8 @@ const useMenu = (): IUseMenu => {
   const dispatch = useDispatch();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
-
-    console.log(e.target.checked);
-    
-
-    dispatch(updateFieldisShown({id: id, isShown: e.target.checked}))
-  }
+    dispatch(updateFieldisShown({ id: id, isShown: e.target.checked }));
+  };
 
   return {
     isMenuShown,

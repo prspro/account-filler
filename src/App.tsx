@@ -80,16 +80,6 @@ function App() {
               Development
             </a>
           </LineItem>
-          <LineItem>
-            <a
-              className="footer__link"
-              href="https://www.linkedin.com/in/0a9a041a3/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Design
-            </a>
-          </LineItem>
         </LineList>
       </footer>
       <Overlay />
