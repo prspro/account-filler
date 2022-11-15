@@ -40,19 +40,13 @@ function App() {
               <div className="container">
                 <LineList>
                   <LineItem>
-                    <CustomButton
-                      onClick={handleDownloadData}
-                      // iconAnimation="scale"
-                    >
+                    <CustomButton onClick={handleDownloadData}>
                       <span>Download</span>
                       <SVGicon id={"download"} />
                     </CustomButton>
                   </LineItem>
                   <LineItem>
-                    <CustomButton
-                      onClick={handleRefreshAllData}
-                      // iconAnimation="rotate"
-                    >
+                    <CustomButton onClick={handleRefreshAllData}>
                       <span>Refresh all</span>
                       <SVGicon id={"refresh"} />
                     </CustomButton>

@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const useLineList = (props: Props) => {
-  return {}
-}
+  return {};
+};
 
-export default useLineList
+export default useLineList;

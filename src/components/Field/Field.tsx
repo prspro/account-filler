@@ -19,13 +19,12 @@ const Field: FC<IFieldProps> = ({ id, label }) => {
       <div className="field__row">
         <span className="field__name">{label}:</span>
         <button className="field__refresh" onClick={handleRefresh}>
-          {/* <RefreshIcon className="svg-icon refresh" /> */}
           <SVGicon id={"refresh"} className={"field__icon"} />
         </button>
       </div>
       <div className="field__row">
         <div className="field__value-wrap">
-          <p className="field__value">{isCopied? "Copied!" :fieldValue}</p>
+          <p className="field__value">{isCopied ? "Copied!" : fieldValue}</p>
         </div>
         <button className="field__copy" onClick={handleCopy}>
           <SVGicon id={"copy"} className={"field__icon"} />

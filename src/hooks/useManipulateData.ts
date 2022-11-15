@@ -3,12 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../store";
 import { updateFieldValue } from "../store/slices/dataSlice";
 
-// const chars = "0123456789abcdefghijklmnopqrstuvwxyz!@#$%^&*()ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const passwordLength = 32;
 
 interface IUseDataFill {
-  dataFillList: {
+  refreshFucntionList: {
     id: string;
     generationFunction: () => string;
   }[];
@@ -60,7 +59,7 @@ function useDataFill(): IUseDataFill {
     }.${dateValue.getFullYear()}`;
   };
 
-  const dataFillList = [
+  const refreshFucntionList = [
     {
       id: "firstName",
       generationFunction: firstName,
@@ -98,8 +97,7 @@ function useDataFill(): IUseDataFill {
   const stateData = useSelector((state: RootState) => state.data.fieldList);
 
   const printStateData = () => {
-
-    const shownData = stateData.filter(entry => entry.isShown);
+    const shownData = stateData.filter((entry) => entry.isShown);
 
     const longestLabel = Math.max(
       ...shownData.map((entry) => entry.label.length)
@@ -132,7 +130,7 @@ function useDataFill(): IUseDataFill {
         updateFieldValue({
           id: entry.id,
           value:
-            dataFillList
+            refreshFucntionList
               .find((item) => item.id === entry.id)
               ?.generationFunction() || "",
         })
@@ -141,7 +139,7 @@ function useDataFill(): IUseDataFill {
   };
 
   return {
-    dataFillList,
+    refreshFucntionList,
     handleDownloadData,
     handleRefreshAllData,
   };

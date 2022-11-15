@@ -10,10 +10,7 @@ const FieldList: FC = () => {
     <ul className="field-list">
       {dataList.map((fieldItem) => (
         <li key={fieldItem.id} className="field-list__item">
-          <Field
-            label={fieldItem.label}
-            id={fieldItem.id}
-          ></Field>
+          <Field label={fieldItem.label} id={fieldItem.id}></Field>
         </li>
       ))}
     </ul>

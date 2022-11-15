@@ -1,7 +1,7 @@
 @import "../../styles/_breackpoints"
 $barWidth: 35px
 $barHeight: 5px
-    
+
 .burger
     $root: &
     width: $barWidth
@@ -12,11 +12,8 @@ $barHeight: 5px
     cursor: pointer
     padding: 0
     background: none
-    // border: 1px solid #000
     border: none
-    // z-index: 12
     &__bar
-        // width: 20px
         border-radius: 3px
         height: $barHeight
         background-color: #000
@@ -37,7 +34,7 @@ $barHeight: 5px
             &:nth-of-type(3)
                 position: relative
                 transform: translate(0 , -$barHeight * 2) rotate(-45deg)
-                
+
 @media screen and (max-width: $container_sm)
     $barWidth: 23px
     $barHeight: 3px
@@ -60,4 +57,3 @@ $barHeight: 5px
                 &:nth-of-type(3)
                     position: relative
                     transform: translate(0 , -$barHeight * 2) rotate(-45deg)
-

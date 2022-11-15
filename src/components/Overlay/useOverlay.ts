@@ -3,8 +3,8 @@ import { RootState } from "../../store";
 import { hideOverlay, hideMenu } from "../../store/slices/appSlice";
 
 interface IUseOverlay {
-    isOverlayShown: boolean;
-    handleClick: () => void;
+  isOverlayShown: boolean;
+  handleClick: () => void;
 }
 
 const useOverlay = (): IUseOverlay => {

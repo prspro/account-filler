@@ -5,7 +5,7 @@ import { RootState } from "../../store";
 import { updateFieldValue } from "../../store/slices/dataSlice";
 ///
 import useCopy from "../../hooks/useCopy";
-import useManipulateData from "../../hooks/useManipulateData"
+import useManipulateData from "../../hooks/useManipulateData";
 
 interface IUseFieldProps {
   id: string;
@@ -19,19 +19,18 @@ interface IUseField {
   handleCopy: () => void;
 }
 
-const useField = ({
-  id,
-  label,
-}: IUseFieldProps): IUseField => {
+const useField = ({ id, label }: IUseFieldProps): IUseField => {
   const fieldValue =
     useSelector((state: RootState) => state.data.fieldList).find(
       (entry) => entry.id === id
     )?.value || "";
 
   const { isCopied, handleCopy } = useCopy(fieldValue);
-  const { dataFillList} = useManipulateData();
+  const { refreshFucntionList } = useManipulateData();
 
-  const refreshFunction = dataFillList.find(entry => entry.id === id)?.generationFunction || (() => "error");
+  const refreshFunction =
+    refreshFucntionList.find((entry) => entry.id === id)?.generationFunction ||
+    (() => "error");
   const dispatch = useDispatch();
 
   useEffect(() => {

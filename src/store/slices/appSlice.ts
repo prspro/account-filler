@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface IAppSlice {
   isDataGenerated: boolean;
   isOverlayShown: boolean;
-  isMenuShown: boolean,
+  isMenuShown: boolean;
 }
 
 const initialState: IAppSlice = {
