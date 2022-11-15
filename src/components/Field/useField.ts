@@ -9,7 +9,6 @@ import useManipulateData from "../../hooks/useManipulateData";
 
 interface IUseFieldProps {
   id: string;
-  label: string;
 }
 
 interface IUseField {
@@ -19,7 +18,7 @@ interface IUseField {
   handleCopy: () => void;
 }
 
-const useField = ({ id, label }: IUseFieldProps): IUseField => {
+const useField = ({ id }: IUseFieldProps): IUseField => {
   const fieldValue =
     useSelector((state: RootState) => state.data.fieldList).find(
       (entry) => entry.id === id
