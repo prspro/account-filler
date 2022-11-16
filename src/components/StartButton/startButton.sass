@@ -11,17 +11,21 @@
     left: 50%
     transform: translate(-50%, -50%)
     cursor: pointer
-    &:hover
-        #{$root}__icon
-            transform: rotate(180deg)
     & &__icon
         height: 150px
-        width: 150px
+        width: 160px
         margin-bottom: 10px
     &__text
         font-size: 1.8rem
         font-weight: 700
         margin: 0
+    &.loading
+        #{$root}__icon
+            animation: rotate 2s infinite linear
+    &.waiting
+        &:hover
+            #{$root}__icon
+                transform: rotate(180deg)
 
 @media screen and (max-width: $container_sm)
     .start-btn
@@ -30,3 +34,9 @@
             width: 100px
         &__text
             font-size: 1.4rem
+
+@keyframes rotate
+    0%
+        transform: rotate(0)
+    100%
+        transform: rotate(360deg)
